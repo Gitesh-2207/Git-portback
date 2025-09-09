@@ -11,17 +11,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ✅ CORS Setup (Allow frontend + localhost for dev)
-const corsOptions = {
-  origin: [
-    process.env.CLIENT_ORIGIN,      // e.g., https://your-portfolio.vercel.app
-    "http://localhost:5500",        // local testing
-    "http://127.0.0.1:5500",
-    "http://localhost:3000"         // react dev server (optional)
-  ],
+app.use(cors({
+  origin: ["http://localhost:3000", "https://your-frontend.vercel.app"],
   methods: ["GET", "POST"],
   credentials: true
-};
-app.use(cors(corsOptions));
+}));
+
 
 // ✅ MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
