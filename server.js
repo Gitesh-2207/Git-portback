@@ -49,7 +49,7 @@ app.post("/contact", async (req, res) => {
     const newContact = new Contact({ name, email, message });
     await newContact.save();
 
-    res.status(201).send("✅ Contact details saved..!");
+    res.status(201).send("✅ Contact details saved to the Database......!");
   } catch (err) {
     console.error("❌ Error saving contact:", err);
     res.status(500).send("Server error, please try again later.");
